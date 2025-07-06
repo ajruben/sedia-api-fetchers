@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include setup.py
+recursive-include sedia_api_fetchers *.py
+recursive-include sedia_api_fetchers/schemas *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

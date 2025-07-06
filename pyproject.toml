@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sedia-api-fetchers"
+version = "1.0.0"
+description = "Python classes for fetching data from the European Commission's SEDIA API endpoints"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    {name = "Ruben Swarts", email = "aj.rubenswarts@gmail.com"},
+]
+keywords = ["api", "european-commission", "sedia", "data-fetching", "research"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "requests>=2.25.0",
+    "pandas>=1.3.0",
+    "numpy>=1.20.0",
+    "tqdm>=4.60.0",
+    "urllib3>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+]
+
+[project.urls]
+Homepage = "https://github.com/ajruben/sedia-api-fetchers"
+Repository = "https://github.com/ajruben/sedia-api-fetchers"
+Issues = "https://github.com/ajruben/sedia-api-fetchers/issues"
+
+[tool.setuptools]
+packages = ["sedia_api_fetchers", "sedia_api_fetchers.helpers"]
+
+[tool.setuptools.package-data]
+sedia_api_fetchers = ["schemas/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
