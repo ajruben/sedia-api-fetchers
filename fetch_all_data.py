@@ -135,10 +135,10 @@ class ETLExtractor:
     def _import_fetchers(self):
         """Import all fetcher classes."""
         try:
-            from EUFT_retrieve_projects import SEDIA_GET_PROJECTS
-            from EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
-            from EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
-            from EUFT_retrieve_faq import SEDIA_GET_FAQ
+            from sedia_api_fetchers.EUFT_retrieve_projects import SEDIA_GET_PROJECTS
+            from sedia_api_fetchers.EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
+            from sedia_api_fetchers.EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
+            from sedia_api_fetchers.EUFT_retrieve_faq import SEDIA_GET_FAQ
             
             self.fetchers = {
                 'projects': SEDIA_GET_PROJECTS,
@@ -800,7 +800,7 @@ class ETLPipeline:
 def main():
     """Main entry point for the ETL pipeline."""
     # Set up configuration
-    base_dir = Path(__file__).parent.parent.parent
+    base_dir = Path.cwd()
     config = ETLConfig(
         data_dir=base_dir / "data",
         logs_dir=base_dir / "logs",
