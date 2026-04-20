@@ -486,13 +486,10 @@ class ETLLoader:
         """Check for changes compared to existing data."""
         # Import Functions here to avoid circular imports
         try:
-            from helpers.functions import Functions
-        except ImportError:
-            import sys
-            from pathlib import Path
-            sys.path.append(str(Path(__file__).parent))
-            from helpers.functions import Functions
-        
+            from sedia_api_fetchers.helpers.functions import Functions
+        except ImportError as e:
+            self.main_logger.error(f"Failed to import Functions: {e}")
+            raise
         pattern = f"{endpoint}_{programme.clean_name}_*.csv"
         existing_files = list(self.config.data_dir.glob(pattern))
         
