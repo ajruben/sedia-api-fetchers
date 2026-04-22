@@ -256,22 +256,6 @@ Available Options:
 
 **Architecture**: Uses `SEDIAPaginatedFetcher` (when migrated)
 
-## Quick Start Demo
-
-Run the demo:
-
-```bash
-cd src/EUFT_retrieve
-python demo_all_fetchers.py
-```
-
-Demonstrates:
-- All 5 fetchers with example usage
-- Flexible input handling
-- Data processing capabilities
-- Error handling features
-- Advanced usage patterns
-
 ## Programme IDs Reference
 
 | Programme | Name | ID |
