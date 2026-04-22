@@ -17,7 +17,6 @@ This package includes 5 specialized fetchers for different types of EU data:
 ## Installation & Setup
 
 ### From source
-
 ```bash
 git clone https://github.com/ajruben/sedia-api-fetchers.git
 cd sedia-api-fetchers  
@@ -26,16 +25,18 @@ pip install .
 
 ### Directory Structure
 ```
-src/EUFT_retrieve/
-├── EUFT_retrieve_projects.py          # Projects fetcher
-├── EUFT_retrieve_participants.py      # Participants fetcher  
-├── EUFT_retrieve_funding_tenders.py   # Funding & tenders fetcher
-├── EUFT_retrieve_topics.py            # Topics fetcher
-├── EUFT_retrieve_faq.py               # FAQ fetcher
-├── demo_all_fetchers.py               # Comprehensive demo
-├── helpers/
-│   └── functions.py                   # Utility functions
-└── README.md                          # This file
+├── sedia_api_fetchers/
+│   ├── EUFT_retrieve_projects.py          # Projects fetcher
+│   ├── EUFT_retrieve_participants.py      # Participants fetcher
+│   ├── EUFT_retrieve_funding_tenders.py   # Funding & tenders fetcher
+│   ├── EUFT_retrieve_topics.py            # Topics fetcher
+│   ├── EUFT_retrieve_faq.py               # FAQ fetcher
+│   ├── EUFT_retrieve_facets.py            # Fetches available programmes & metadata
+│   └── helpers/
+│       └── functions.py                   # Utility functions
+├── fetch_all_data.py                      # Fetches data from all endpoints for all programmes
+├── fetch_edf_data.py                      # Fetches all EDF-related data across endpoints
+└── README.md                              # This file
 ```
 
 ## Architecture
