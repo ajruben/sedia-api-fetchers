@@ -16,23 +16,27 @@ This package includes 5 specialized fetchers for different types of EU data:
 
 ## Installation & Setup
 
-### Prerequisites
+### From source
 ```bash
-pip install requests pandas numpy tqdm pathlib urllib3
+git clone https://github.com/ajruben/sedia-api-fetchers.git
+cd sedia-api-fetchers  
+pip install .
 ```
 
 ### Directory Structure
 ```
-src/EUFT_retrieve/
-├── EUFT_retrieve_projects.py          # Projects fetcher
-├── EUFT_retrieve_participants.py      # Participants fetcher  
-├── EUFT_retrieve_funding_tenders.py   # Funding & tenders fetcher
-├── EUFT_retrieve_topics.py            # Topics fetcher
-├── EUFT_retrieve_faq.py               # FAQ fetcher
-├── demo_all_fetchers.py               # Comprehensive demo
-├── helpers/
-│   └── functions.py                   # Utility functions
-└── README.md                          # This file
+├── sedia_api_fetchers/
+│   ├── EUFT_retrieve_projects.py          # Projects fetcher
+│   ├── EUFT_retrieve_participants.py      # Participants fetcher
+│   ├── EUFT_retrieve_funding_tenders.py   # Funding & tenders fetcher
+│   ├── EUFT_retrieve_topics.py            # Topics fetcher
+│   ├── EUFT_retrieve_faq.py               # FAQ fetcher
+│   ├── EUFT_retrieve_facets.py            # Fetches available programmes & metadata
+│   └── helpers/
+│       └── functions.py                   # Utility functions
+├── fetch_all_data.py                      # Fetches data from all endpoints for all programmes
+├── fetch_edf_data.py                      # Fetches all EDF-related data across endpoints
+└── README.md                              # This file
 ```
 
 ## Architecture
@@ -99,7 +103,7 @@ data = fetcher.get(
 Fetches project data with optional enrichment.
 
 ```python
-from EUFT_retrieve_projects import SEDIA_GET_PROJECTS
+from sedia_api_fetchers.EUFT_retrieve_projects import SEDIA_GET_PROJECTS
 
 # Basic usage
 fetcher = SEDIA_GET_PROJECTS(flatten_metadata=True)
@@ -126,7 +130,7 @@ Features:
 Fetches organization and person data from EU programmes.
 
 ```python
-from EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
+from sedia_api_fetchers.EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
 
 fetcher = SEDIA_GET_PARTICIPANTS(flatten_metadata=True)
 
@@ -150,7 +154,7 @@ Features:
 Fetches grant opportunities and tender notices.
 
 ```python
-from EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
+from sedia_api_fetchers.EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
 
 fetcher = SEDIA_GET_FUNDING_TENDERS(flatten_metadata=True)
 
@@ -191,7 +195,7 @@ Available Options:
 Fetches detailed information about specific research topics.
 
 ```python
-from EUFT_retrieve_topics import SEDIA_GET_TOPICS
+from sedia_api_fetchers.EUFT_retrieve_topics import SEDIA_GET_TOPICS
 
 fetcher = SEDIA_GET_TOPICS(flatten_metadata=True)
 
@@ -219,7 +223,7 @@ Features:
 Fetches FAQ index and detailed FAQ content.
 
 ```python
-from EUFT_retrieve_faq import SEDIA_GET_FAQ
+from sedia_api_fetchers.EUFT_retrieve_faq import SEDIA_GET_FAQ
 
 fetcher = SEDIA_GET_FAQ(flatten_metadata=True)
 
@@ -252,21 +256,21 @@ Available Options:
 
 **Architecture**: Uses `SEDIAPaginatedFetcher` (when migrated)
 
-## Quick Start Demo
+### Fetch All Data
 
-Run the demo:
+`fetch_all_data.py` fetches data from all endpoints for all available programmes. It requires a facets file to identify which programmes to fetch.
 
+If you don't already have a facets file, generate one first using:
 ```bash
-cd src/EUFT_retrieve
-python demo_all_fetchers.py
+python -m sedia_api_fetchers.EUFT_retrieve_facets
 ```
 
-Demonstrates:
-- All 5 fetchers with example usage
-- Flexible input handling
-- Data processing capabilities
-- Error handling features
-- Advanced usage patterns
+Then run the main script:
+```bash
+python fetch_all_data.py
+```
+
+Output will be saved to `data/` in your current working directory, with logs in `logs/`.
 
 ## Programme IDs Reference
 
@@ -321,7 +325,7 @@ data = fetcher.get('h2020', save=True)  # Automatically chunked
 ### Data Processing Pipeline
 
 ```python
-from helpers.functions import Functions
+from sedia_api_fetchers.helpers.functions import Functions
 
 # Load and process cached data
 df = Functions.load_cached_dataframe('cache/my_data.feather')
