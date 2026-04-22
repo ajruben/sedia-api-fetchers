@@ -103,7 +103,7 @@ data = fetcher.get(
 Fetches project data with optional enrichment.
 
 ```python
-from EUFT_retrieve_projects import SEDIA_GET_PROJECTS
+from sedia_api_fetchers.EUFT_retrieve_projects import SEDIA_GET_PROJECTS
 
 # Basic usage
 fetcher = SEDIA_GET_PROJECTS(flatten_metadata=True)
@@ -130,7 +130,7 @@ Features:
 Fetches organization and person data from EU programmes.
 
 ```python
-from EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
+from sedia_api_fetchers.EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
 
 fetcher = SEDIA_GET_PARTICIPANTS(flatten_metadata=True)
 
@@ -154,7 +154,7 @@ Features:
 Fetches grant opportunities and tender notices.
 
 ```python
-from EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
+from sedia_api_fetchers.EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
 
 fetcher = SEDIA_GET_FUNDING_TENDERS(flatten_metadata=True)
 
@@ -195,7 +195,7 @@ Available Options:
 Fetches detailed information about specific research topics.
 
 ```python
-from EUFT_retrieve_topics import SEDIA_GET_TOPICS
+from sedia_api_fetchers.EUFT_retrieve_topics import SEDIA_GET_TOPICS
 
 fetcher = SEDIA_GET_TOPICS(flatten_metadata=True)
 
@@ -223,7 +223,7 @@ Features:
 Fetches FAQ index and detailed FAQ content.
 
 ```python
-from EUFT_retrieve_faq import SEDIA_GET_FAQ
+from sedia_api_fetchers.EUFT_retrieve_faq import SEDIA_GET_FAQ
 
 fetcher = SEDIA_GET_FAQ(flatten_metadata=True)
 
@@ -309,7 +309,7 @@ data = fetcher.get('h2020', save=True)  # Automatically chunked
 ### Data Processing Pipeline
 
 ```python
-from helpers.functions import Functions
+from sedia_api_fetchers.helpers.functions import Functions
 
 # Load and process cached data
 df = Functions.load_cached_dataframe('cache/my_data.feather')
