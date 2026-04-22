@@ -16,9 +16,12 @@ This package includes 5 specialized fetchers for different types of EU data:
 
 ## Installation & Setup
 
-### Prerequisites
+### From source
+
 ```bash
-pip install requests pandas numpy tqdm pathlib urllib3
+git clone https://github.com/ajruben/sedia-api-fetchers.git
+cd sedia-api-fetchers  
+pip install .
 ```
 
 ### Directory Structure
