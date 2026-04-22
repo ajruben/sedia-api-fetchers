@@ -256,6 +256,22 @@ Available Options:
 
 **Architecture**: Uses `SEDIAPaginatedFetcher` (when migrated)
 
+### Fetch All Data
+
+`fetch_all_data.py` fetches data from all endpoints for all available programmes. It requires a facets file to identify which programmes to fetch.
+
+If you don't already have a facets file, generate one first using:
+```bash
+python -m sedia_api_fetchers.EUFT_retrieve_facets
+```
+
+Then run the main script:
+```bash
+python fetch_all_data.py
+```
+
+Output will be saved to `data/` in your current working directory, with logs in `logs/`.
+
 ## Programme IDs Reference
 
 | Programme | Name | ID |
