@@ -135,10 +135,10 @@ class ETLExtractor:
     def _import_fetchers(self):
         """Import all fetcher classes."""
         try:
-            from EUFT_retrieve_projects import SEDIA_GET_PROJECTS
-            from EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
-            from EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
-            from EUFT_retrieve_faq import SEDIA_GET_FAQ
+            from sedia_api_fetchers.EUFT_retrieve_projects import SEDIA_GET_PROJECTS
+            from sedia_api_fetchers.EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
+            from sedia_api_fetchers.EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
+            from sedia_api_fetchers.EUFT_retrieve_faq import SEDIA_GET_FAQ
             
             self.fetchers = {
                 'projects': SEDIA_GET_PROJECTS,
@@ -486,13 +486,10 @@ class ETLLoader:
         """Check for changes compared to existing data."""
         # Import Functions here to avoid circular imports
         try:
-            from helpers.functions import Functions
-        except ImportError:
-            import sys
-            from pathlib import Path
-            sys.path.append(str(Path(__file__).parent))
-            from helpers.functions import Functions
-        
+            from sedia_api_fetchers.helpers.functions import Functions
+        except ImportError as e:
+            self.main_logger.error(f"Failed to import Functions: {e}")
+            raise
         pattern = f"{endpoint}_{programme.clean_name}_*.csv"
         existing_files = list(self.config.data_dir.glob(pattern))
         
@@ -800,7 +797,7 @@ class ETLPipeline:
 def main():
     """Main entry point for the ETL pipeline."""
     # Set up configuration
-    base_dir = Path(__file__).parent.parent.parent
+    base_dir = Path.cwd()
     config = ETLConfig(
         data_dir=base_dir / "data",
         logs_dir=base_dir / "logs",
