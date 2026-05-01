@@ -384,7 +384,7 @@ This project is part of the EU thesis research toolkit. Please refer to the main
 ## Support
 
 For issues or questions:
-1. Check the demo script for usage examples
+1. Check the README for usage examples
 2. Review error messages for specific issues
 3. Verify programme IDs and API parameters
 4. Ensure network connectivity to EU APIs
