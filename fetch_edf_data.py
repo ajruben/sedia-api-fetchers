@@ -20,11 +20,11 @@ def fetch_edf_data():
     
     # Import all fetchers
     try:
-        from EUFT_retrieve_projects import SEDIA_GET_PROJECTS
-        from EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
-        from EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
-        from EUFT_retrieve_topics import SEDIA_GET_TOPICS
-        from EUFT_retrieve_faq import SEDIA_GET_FAQ
+        from sedia_api_fetchers.EUFT_retrieve_projects import SEDIA_GET_PROJECTS
+        from sedia_api_fetchers.EUFT_retrieve_participants import SEDIA_GET_PARTICIPANTS
+        from sedia_api_fetchers.EUFT_retrieve_funding_tenders import SEDIA_GET_FUNDING_TENDERS
+        from sedia_api_fetchers.EUFT_retrieve_topics import SEDIA_GET_TOPICS
+        from sedia_api_fetchers.EUFT_retrieve_faq import SEDIA_GET_FAQ
         print("✅ All fetchers imported successfully")
     except ImportError as e:
         print(f"❌ Import error: {e}")
